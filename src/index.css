@@ -1,0 +1,45 @@
+@import url(https://fonts.googleapis.com/css?family=Poppins:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic);
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  font-size: 16px;
+  font-family: 'Poppins';
+}
+
+.ring {
+  animation: ring 2s linear infinite;
+}
+@keyframes ring {
+  0% {
+    transform: rotate(0deg);
+    box-shadow: 1px 5px 2px #0D6EFD;
+  }
+  50% {
+    transform: rotate(180deg);
+    box-shadow: 1px 5px 2px #198754;
+  }
+  100% {
+    transform: rotate(360deg);
+    box-shadow: 1px 5px 2px #6610F2;
+  }
+}
+.ring:before {
+  position: absolute;
+  content: ‘’;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+}
+.loader {
+  animation: logo 3s ease-in-out infinite;
+}
+@keyframes logo {
+  50% {
+    opacity: 0.4;
+  }
+}
