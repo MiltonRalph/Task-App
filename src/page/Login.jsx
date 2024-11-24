@@ -9,6 +9,8 @@ import { FaEnvelope, FaEye, FaEyeSlash } from 'react-icons/fa';
 import { BiCheckCircle, BiCircle } from 'react-icons/bi';
 
 const Login = () => {
+  const backendUrl = "https://task-server-3grp.onrender.com"
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isPasswordValid, setIsPasswordValid] = useState(false);
@@ -62,7 +64,7 @@ const Login = () => {
       // Backend registration logic using the models provided
       try {
         const response = await fetch(
-          'http://localhost:8000/api/v1/users/login',
+          `${backendUrl}/api/v1/users/login`,
           {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -79,7 +81,7 @@ const Login = () => {
           window.localStorage.setItem('loggedIn', true);
 
           // Notify success
-          toast.success('✔️ Login successful!', {
+          toast.success('Login successful!', {
             position: 'top-right',
             autoClose: 3000, // Close after 3 seconds
             hideProgressBar: false,
@@ -97,7 +99,7 @@ const Login = () => {
           setError(errorData.message || 'Login failed.');
         }
       } catch (error) {
-        toast.error('❌ User does not exist!', {
+        toast.error('User does not exist!', {
           position: 'top-right',
           autoClose: 3000,
           hideProgressBar: false,

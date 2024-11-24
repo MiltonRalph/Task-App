@@ -9,6 +9,8 @@ import { FaEnvelope, FaEye, FaEyeSlash } from 'react-icons/fa';
 import { BiCheckCircle, BiCircle } from 'react-icons/bi';
 
 const Register = () => {
+  const backendUrl = "https://task-server-3grp.onrender.com"
+
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -72,7 +74,7 @@ const Register = () => {
       try {
         // Assume an API request to register the user
         const response = await fetch(
-          'http://localhost:8000/api/v1/users/register',
+          `${backendUrl}//api/v1/users/register`,
           {
             method: 'POST',
             crossDomain: true,
@@ -92,7 +94,7 @@ const Register = () => {
             'task_App-username',
             JSON.stringify(data.user.username)
           );
-          toast.success('✔️ Registered successfully!', {
+          toast.success('Registered successfully!', {
             position: 'top-right',
             autoClose: 3000,
             hideProgressBar: false,
@@ -109,7 +111,7 @@ const Register = () => {
           setError(errorData.message || 'Registration failed.');
         }
       } catch (error) {
-        toast.error('❌ User already exists!', {
+        toast.error('User already exists!', {
           position: 'top-right',
           autoClose: 3000,
           hideProgressBar: false,

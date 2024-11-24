@@ -26,8 +26,7 @@ const Dashboard = () => {
   const token = JSON.parse(window.sessionStorage.getItem('task_App-token'));
   const username = window.localStorage.getItem('task_App-username');
 
-  // const token = window.localStorage.getItem('task_App-token');
-
+  const backendUrl = "https://task-server-3grp.onrender.com"
   // Fetch tasks and username
   useEffect(() => {
     if (!token) {
@@ -38,7 +37,7 @@ const Dashboard = () => {
 
     const fetchTasks = async () => {
       try {
-        const response = await fetch('http://localhost:8000/api/v1/tasks', {
+        const response = await fetch(`${backendUrl}/api/v1/tasks`, {
           method: 'GET',
           headers: {
             Authorization: `Bearer ${token}`,
@@ -72,8 +71,8 @@ const Dashboard = () => {
     try {
       const method = isEditing ? 'PUT' : 'POST';
       const url = isEditing
-        ? `http://localhost:8000/api/v1/tasks/${currentTaskId}`
-        : 'http://localhost:8000/api/v1/tasks';
+        ? `${backendUrl}/api/v1/tasks/${currentTaskId}`
+        : `${backendUrl}/api/v1/tasks`;
 
       const response = await fetch(url, {
         method,
@@ -121,7 +120,7 @@ const Dashboard = () => {
 
   const handleDelete = async (id) => {
     try {
-      const response = await fetch(`http://localhost:8000/api/v1/tasks/${id}`, {
+      const response = await fetch(`${backendUrl}/api/v1/tasks/${id}`, {
         method: 'DELETE',
         headers: {
           Authorization: `Bearer ${token}`,
@@ -191,7 +190,7 @@ const Dashboard = () => {
   };
 
   const notifyInfo = () => {
-    toast.info('🙂 Remember to check your deadlines!', {
+    toast.info('Remember to check your deadlines! 🙂', {
       position: 'bottom-left',
       autoClose: 5000,
       hideProgressBar: false,
