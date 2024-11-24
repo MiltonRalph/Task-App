@@ -74,7 +74,7 @@ const Register = () => {
       try {
         // Assume an API request to register the user
         const response = await fetch(
-          `${backendUrl}//api/v1/users/register`,
+          `${backendUrl}/api/v1/users/register`,
           {
             method: 'POST',
             crossDomain: true,
