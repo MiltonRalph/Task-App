@@ -5,11 +5,12 @@ import { useNavigate } from 'react-router-dom';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import TypingEffect from '../components/TypingEffect';
 import { FaEnvelope, FaEye, FaEyeSlash } from 'react-icons/fa';
 import { BiCheckCircle, BiCircle } from 'react-icons/bi';
 
 const Register = () => {
-  const backendUrl = "https://task-server-3grp.onrender.com"
+  const backendUrl = 'https://task-server-3grp.onrender.com';
 
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
@@ -73,27 +74,21 @@ const Register = () => {
       // Backend registration logic using the models provided
       try {
         // Assume an API request to register the user
-        const response = await fetch(
-          `${backendUrl}/api/v1/users/register`,
-          {
-            method: 'POST',
-            crossDomain: true,
-            headers: {
-              'Content-Type': 'application/json',
-              Accept: 'application/json',
-              'Access-Control-Allow-Origin': '*',
-            },
-            body: JSON.stringify({ username, email, password }),
-          }
-        );
+        const response = await fetch(`${backendUrl}/api/v1/users/register`, {
+          method: 'POST',
+          crossDomain: true,
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+            'Access-Control-Allow-Origin': '*',
+          },
+          body: JSON.stringify({ username, email, password }),
+        });
 
         const data = await response.json();
         if (response.ok) {
           // On successful registration, navigate to the login page
-          window.localStorage.setItem(
-            'task_App-username',
-            JSON.stringify(data.user.username)
-          );
+          window.localStorage.setItem('task_App-username', data.user.username);
           toast.success('Registered successfully!', {
             position: 'top-right',
             autoClose: 3000,
@@ -111,7 +106,7 @@ const Register = () => {
           setError(errorData.message || 'Registration failed.');
         }
       } catch (error) {
-        toast.error('User already exists!', {
+        toast.error('Error connecting to server, Try again!', {
           position: 'top-right',
           autoClose: 3000,
           hideProgressBar: false,
@@ -119,7 +114,7 @@ const Register = () => {
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-        })
+        });
         console.log(error);
       } finally {
         setLoading(false);
@@ -131,8 +126,9 @@ const Register = () => {
 
   return (
     <>
-      <div className='flex justify-center items-center h-screen bg-gray-200'>
-        <div className='bg-white p-6 rounded-lg shadow-lg w-96'>
+      <div className='flex justify-center items-center h-screen bg-gray-100'>
+        <TypingEffect />
+        <div className='bg-white mt-6 mx-3 p-6 rounded-lg shadow-lg w-96'>
           <h2 className='text-2xl font-semibold mb-4 text-primaryColor'>
             Register
           </h2>
@@ -236,7 +232,7 @@ const Register = () => {
               {loading ? 'Registering...' : 'Register'}
             </button>
             <div className='flex justify-between mt-4'>
-              <p className='text-sm'>Already Registered?</p>
+              <p className='text-sm text-secondaryColor'>Already Registered?</p>
               <Link
                 to='/login'
                 className='text-sm text-linkColor hover:text-hoverColor'>

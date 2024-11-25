@@ -1,12 +1,14 @@
 import React from 'react';
 import logo from '../assets/logo.png';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
 
 const NavBar = () => {
   const logOut = () => {
-    window.localStorage.clear();
-    window.location.href = '/login';
+    const confirmLogout = window.confirm('Are you sure you want to log out?');
+    if (confirmLogout) {
+      window.localStorage.clear();
+      window.location.href = '/login';
+    }
   };
 
   return (
@@ -24,11 +26,12 @@ const NavBar = () => {
             Task<span className='font-bold'>Me</span>
           </h3>
         </Link>
-        <button
+        <Link
+          to='/login'
           onClick={logOut}
           className='bg-primaryColor text-white px-4 py-2 rounded hover:bg-linkColor transition'>
           Log Out
-        </button>
+        </Link>
         {/* Notification Bell*/}
         <div className='top-0 lg:my-0 right-0 flex items-center static inset-auto lg:ml-6 lg:pr-0'>
           {/* Bell Notification */}

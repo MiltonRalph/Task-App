@@ -5,11 +5,12 @@ import { useNavigate } from 'react-router-dom';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import TypingEffect from '../components/TypingEffect';
 import { FaEnvelope, FaEye, FaEyeSlash } from 'react-icons/fa';
 import { BiCheckCircle, BiCircle } from 'react-icons/bi';
 
 const Login = () => {
-  const backendUrl = "https://task-server-3grp.onrender.com"
+  const backendUrl = 'https://task-server-3grp.onrender.com';
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -63,14 +64,11 @@ const Login = () => {
 
       // Backend registration logic using the models provided
       try {
-        const response = await fetch(
-          `${backendUrl}/api/v1/users/login`,
-          {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email, password }),
-          }
-        );
+        const response = await fetch(`${backendUrl}/api/v1/users/login`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password }),
+        });
 
         const data = await response.json();
         if (response.ok) {
@@ -99,7 +97,7 @@ const Login = () => {
           setError(errorData.message || 'Login failed.');
         }
       } catch (error) {
-        toast.error('User does not exist!', {
+        toast.error('Error connecting to server, Try again!', {
           position: 'top-right',
           autoClose: 3000,
           hideProgressBar: false,
@@ -118,8 +116,9 @@ const Login = () => {
 
   return (
     <>
-      <div className='flex justify-center items-center h-screen bg-gray-200'>
-        <div className='bg-white p-6 rounded-lg shadow-lg w-96'>
+      <div className='flex justify-center items-center h-screen bg-gray-100'>
+        <TypingEffect/>
+        <div className='bg-white mt-6 mx-6 p-6 rounded-lg shadow-lg w-96'>
           <h2 className='text-2xl font-semibold mb-4 text-primaryColor'>
             Login
           </h2>
@@ -205,7 +204,7 @@ const Login = () => {
               {loading ? 'Login In...' : 'Login'}
             </button>
             <div className='flex justify-between mt-4'>
-              <p className='text-sm'>New User?</p>
+              <p className='text-sm text-secondaryColor'>New User?</p>
               <Link
                 to='/'
                 className='text-sm text-linkColor hover:text-hoverColor'>

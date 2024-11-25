@@ -8,6 +8,7 @@ import Register from './page/Register';
 import Login from './page/Login';
 import Dashboard from './page/Dashboard';
 
+
 function App() {
   return (
     <>
