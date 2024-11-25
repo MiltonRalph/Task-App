@@ -35,7 +35,7 @@ const TypingEffect = () => {
 
   return (
     <>
-      <h1 className='absolute -translate-y-[11em] text-primaryColor text-lg font-bold overflow-hidden whitespace-nowrap border-r-2 border-black animate-caret md:text-3xl md:-translate-y-[8em]'>
+      <h1 className='absolute -translate-y-[13em] text-primaryColor text-lg font-bold overflow-hidden whitespace-nowrap border-r-2 border-black animate-caret md:text-3xl md:-translate-y-[10em]'>
         {text}
       </h1>
     </>
