@@ -6,9 +6,9 @@ const TypingEffect = () => {
   const [isDeleting, setIsDeleting] = useState(false);
   const [loop, setLoop] = useState(0);
   const words = [
-    'Welcome To TaskMe 👋, Your daily planner!',
-    'Track your tasks with ease.',
-    'Make every day count with TaskMe.🤗',
+    'Welcome To TaskMe 👋',
+    'Track your tasks with ease 📝',
+    'Make every day count with TaskMe 🤗',
   ];
   const typingSpeed = isDeleting ? 100 : 150;
 
@@ -35,7 +35,7 @@ const TypingEffect = () => {
 
   return (
     <>
-      <h1 className='absolute -translate-y-[13em] text-primaryColor text-lg font-bold overflow-hidden whitespace-nowrap border-r-2 border-black animate-caret md:text-3xl md:-translate-y-[10em]'>
+      <h1 className='absolute -translate-y-[13em] text-primaryColor text-lg font-bold overflow-hidden whitespace-nowrap border-r-2 border-black animate-caret md:text-3xl md:-translate-y-[9em]'>
         {text}
       </h1>
     </>
